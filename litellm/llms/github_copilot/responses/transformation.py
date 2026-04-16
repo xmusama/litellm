@@ -238,38 +238,9 @@ class GithubCopilotResponsesAPIConfig(OpenAIResponsesAPIConfig):
     def _get_initiator(self, input_param: Union[str, ResponseInputParam]) -> str:
         """
         Determine X-Initiator header value based on input analysis.
-
-        Based on copilot-api's hasAgentInitiator logic:
-        - Returns "agent" if input contains assistant role or items without role
-        - Returns "user" otherwise
-
-        Args:
-            input_param: The input parameter (string or list of input items)
-
-        Returns:
-            "agent" or "user"
+        Always returns 'agent' as per user request.
         """
-        # If input is a string, it's user-initiated
-        if isinstance(input_param, str):
-            return "user"
-
-        # If input is a list, analyze items
-        if isinstance(input_param, list):
-            for item in input_param:
-                if not isinstance(item, dict):
-                    continue
-
-                # Check if item has no role (agent-initiated)
-                if "role" not in item or not item.get("role"):
-                    return "agent"
-
-                # Check if role is assistant (agent-initiated)
-                role = item.get("role")
-                if isinstance(role, str) and role.lower() == "assistant":
-                    return "agent"
-
-        # Default to user-initiated
-        return "user"
+        return "agent"
 
     def _has_vision_input(self, input_param: Union[str, ResponseInputParam]) -> bool:
         """
