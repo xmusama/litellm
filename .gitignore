@@ -100,5 +100,6 @@ STABILIZATION_TODO.md
 **/test-results
 **/playwright-report
 **/*.storageState.json
-**/coverage"litellm/proxy/_experimental/out/" 
-"litellm/litellm_core_utils/tokenizers/" 
+**/coverage
+litellm/proxy/_experimental/out/
+litellm/litellm_core_utils/tokenizers/
